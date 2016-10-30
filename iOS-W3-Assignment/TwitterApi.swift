@@ -23,7 +23,19 @@ class TwiterApi {
     static let shared = TwiterApi()
     
     private init() {
-        twitterClient = BDBOAuth1SessionManager(baseURL: baseUrl, consumerKey: apiKey, consumerSecret: apiSecret)
+//        let defaults = UserDefaults.standard
+//        let currentSession = defaults.object(forKey: "CurrentSession") as? Data
+//        
+//        if let currentSession = currentSession {
+//            twitterClient = NSKeyedUnarchiver.unarchiveObject(with: currentSession) as? BDBOAuth1SessionManager
+//        }
+//        else {
+            twitterClient = BDBOAuth1SessionManager(baseURL: baseUrl, consumerKey: apiKey, consumerSecret: apiSecret)
+//        }
+    }
+    
+    func getSession() -> BDBOAuth1SessionManager? {
+        return twitterClient
     }
     
     func getRequestToken(success: @escaping (() -> Void), failure: @escaping ((Error) -> Void)) {
@@ -70,13 +82,15 @@ class TwiterApi {
         })
     }
     
-    func getHomeTimeLine() {
+    func getHomeTimeLine(success: @escaping ([NSDictionary]) -> Void) {
         _ = twitterClient?.get(
             "1.1/statuses/home_timeline.json",
             parameters: nil,
             progress: nil,
             success: { (task: URLSessionDataTask?, response: Any?) in
-                print(response)
+                let tweetDictionary = response as? [NSDictionary]
+                print(tweetDictionary)
+                success(tweetDictionary!)
             },
             failure: { (task: URLSessionDataTask?, error: Error) in
                 print("error: \(error.localizedDescription)")
@@ -97,7 +111,21 @@ class TwiterApi {
                 callBack(user)
             },
             failure: { (task: URLSessionDataTask?, error: Error) in
+                
                 callBack(nil)
+        })
+    }
+    
+    func postNewTweet(text: String, success: @escaping (Tweet) -> Void) {
+        let paras = ["status": text]
+        
+        _ = twitterClient?.post("1.1/statuses/update.json", parameters: paras, progress: nil, success: { (session: URLSessionDataTask, response: Any?) in
+            let dic = response as? NSDictionary
+            let tweet = Tweet(dictionary: dic!)
+            
+            success(tweet)
+            }, failure: { (session: URLSessionDataTask?, error: Error) in
+                print("error: \(error)")
         })
     }
 }
