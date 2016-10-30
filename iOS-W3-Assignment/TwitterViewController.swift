@@ -15,11 +15,18 @@ class TwitterViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadTweetData(_:)), for:UIControlEvents.valueChanged)
+
+        
+        
         initTweetTableView()
-        loadTweetData()
+        loadTweetData(nil)
         
         // Do any additional setup after loading the view.
     }
+
+    var refreshControl: UIRefreshControl!
 
     @IBAction func onNew_Touch(_ sender: AnyObject) {
     }
@@ -30,17 +37,24 @@ class TwitterViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        tableView.insertSubview(refreshControl, at: 0)
     }
     
 
-    public func loadTweetData() {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        
+    public func loadTweetData(_ refreshControl: UIRefreshControl?) {
+        if refreshControl == nil {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
         TwiterApi.shared.getHomeTimeLine() { dicts in
             self.tweetList = Tweet.tweetWithArray(dictionaries: dicts)
             self.tableView.reloadData()
-            
-             MBProgressHUD.hide(for: self.view, animated: true)
+         
+            if refreshControl == nil {
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+            else {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 
@@ -70,20 +84,28 @@ class TwitterViewController: UIViewController, UITableViewDataSource, UITableVie
         
         return (tweetList?.count)!
     }
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "GoToPostView") {
+            let destination = segue.destination as! PostViewController
+            destination.delegate = self
+        }
+        else if (segue.identifier == "GoToDetailView") {
+            let destination = segue.destination as! UINavigationController
+            let detailView = destination.viewControllers[0] as! DetailViewController
+            
+            let indexPath = tableView.indexPathForSelectedRow
+            
+            if let indexPath = indexPath {
+                detailView.viewTweet = self.tweetList?[indexPath.row]
+            }
+        }
     }
-    */
 
 }
 extension TwitterViewController: PostViewDelegate
 {
     func timeLineChanged(_ sender: PostViewController) {
-        loadTweetData()
+        loadTweetData(nil)
     }
 }

@@ -116,9 +116,15 @@ class TwiterApi {
         })
     }
     
-    func postNewTweet(text: String, success: @escaping (Tweet) -> Void) {
-        let paras = ["status": text]
+    func postNewTweet(text: String, replyTo: String? = nil, success: @escaping (Tweet) -> Void) {
+        var paras = [String: String]()
+        var postText = text
+        if let replyTo = replyTo {
+            paras.updateValue(replyTo, forKey: "in_reply_to_status_id")
+            postText = replyTo + " " + postText
+        }
         
+        paras.updateValue(postText, forKey: "status")
         _ = twitterClient?.post("1.1/statuses/update.json", parameters: paras, progress: nil, success: { (session: URLSessionDataTask, response: Any?) in
             let dic = response as? NSDictionary
             let tweet = Tweet(dictionary: dic!)

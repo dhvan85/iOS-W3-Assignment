@@ -21,7 +21,7 @@ class Tweet: NSObject {
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
         userName = dictionary.value(forKeyPath: "user.name") as? String
-        screenName = dictionary.value(forKeyPath: "user.screenName") as? String
+        screenName = dictionary.value(forKeyPath: "user.screen_name") as? String
         profileUrl = dictionary.value(forKeyPath: "user.profile_image_url") as? String
         retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
         favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0

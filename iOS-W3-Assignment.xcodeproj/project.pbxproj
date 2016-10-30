@@ -10,8 +10,9 @@
 		0176E5F3DFBF5EBB3CD3690D /* Pods_iOS_W3_Assignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10AD1E0392FDC3414BF2D489 /* Pods_iOS_W3_Assignment.framework */; };
 		40056D051DC5AD5000789FC9 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40056D041DC5AD5000789FC9 /* TweetTableViewCell.swift */; };
 		400E3E741DC5D153008B8A0F /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400E3E731DC5D153008B8A0F /* PostViewController.swift */; };
+		400E3E761DC5E6D0008B8A0F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400E3E751DC5E6D0008B8A0F /* DetailViewController.swift */; };
+		400E3E791DC5FEFD008B8A0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 400E3E771DC5FEFD008B8A0F /* Main.storyboard */; };
 		405124061DC3064D0052D8D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405124051DC3064D0052D8D6 /* AppDelegate.swift */; };
-		4051240B1DC3064D0052D8D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 405124091DC3064D0052D8D6 /* Main.storyboard */; };
 		4051240D1DC3064D0052D8D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4051240C1DC3064D0052D8D6 /* Assets.xcassets */; };
 		405124101DC3064D0052D8D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4051240E1DC3064D0052D8D6 /* LaunchScreen.storyboard */; };
 		405124181DC307140052D8D6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 405124171DC307140052D8D6 /* README.md */; };
@@ -26,9 +27,10 @@
 		10AD1E0392FDC3414BF2D489 /* Pods_iOS_W3_Assignment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_W3_Assignment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40056D041DC5AD5000789FC9 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		400E3E731DC5D153008B8A0F /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		400E3E751DC5E6D0008B8A0F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		400E3E781DC5FEFD008B8A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		405124021DC3064D0052D8D6 /* iOS-W3-Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-W3-Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		405124051DC3064D0052D8D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4051240A1DC3064D0052D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4051240C1DC3064D0052D8D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4051240F1DC3064D0052D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		405124111DC3064D0052D8D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,10 +78,10 @@
 		405124041DC3064D0052D8D6 /* iOS-W3-Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				400E3E771DC5FEFD008B8A0F /* Main.storyboard */,
 				4051241C1DC30D900052D8D6 /* Model */,
 				4051241B1DC30D890052D8D6 /* API */,
 				405124051DC3064D0052D8D6 /* AppDelegate.swift */,
-				405124091DC3064D0052D8D6 /* Main.storyboard */,
 				4051240C1DC3064D0052D8D6 /* Assets.xcassets */,
 				4051240E1DC3064D0052D8D6 /* LaunchScreen.storyboard */,
 				405124111DC3064D0052D8D6 /* Info.plist */,
@@ -87,6 +89,7 @@
 				4067B9351DC35D6800A667BE /* TwitterViewController.swift */,
 				40056D041DC5AD5000789FC9 /* TweetTableViewCell.swift */,
 				400E3E731DC5D153008B8A0F /* PostViewController.swift */,
+				400E3E751DC5E6D0008B8A0F /* DetailViewController.swift */,
 			);
 			path = "iOS-W3-Assignment";
 			sourceTree = "<group>";
@@ -187,9 +190,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				400E3E791DC5FEFD008B8A0F /* Main.storyboard in Resources */,
 				405124101DC3064D0052D8D6 /* LaunchScreen.storyboard in Resources */,
 				4051240D1DC3064D0052D8D6 /* Assets.xcassets in Resources */,
-				4051240B1DC3064D0052D8D6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +258,7 @@
 				40BFAE5B1DC5144700519CA8 /* Tweet.swift in Sources */,
 				4067B9361DC35D6800A667BE /* TwitterViewController.swift in Sources */,
 				405124181DC307140052D8D6 /* README.md in Sources */,
+				400E3E761DC5E6D0008B8A0F /* DetailViewController.swift in Sources */,
 				405124061DC3064D0052D8D6 /* AppDelegate.swift in Sources */,
 				40056D051DC5AD5000789FC9 /* TweetTableViewCell.swift in Sources */,
 			);
@@ -263,10 +267,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		405124091DC3064D0052D8D6 /* Main.storyboard */ = {
+		400E3E771DC5FEFD008B8A0F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4051240A1DC3064D0052D8D6 /* Base */,
+				400E3E781DC5FEFD008B8A0F /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
